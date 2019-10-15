@@ -52,16 +52,16 @@ class UserController extends Controller
         
         $data = request()->all();
 
-        User::create([
+        factory(User::class)->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
 
             // 'name' => 'Reinaldo',
-            // 'email' => 'reinaldo@reinaldo.com',
+            // 'email' => 'reinaldo2@reinaldo.com',
             // 'password' => bcrypt('12345')
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('user');
     }
 }

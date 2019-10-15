@@ -71,16 +71,16 @@ class UsersModuleTest extends TestCase
 
     public function test_it_creates_a_new_user (){
        
-        $this->post('/usuarios',[
+        $this->post('/usuarios/',[
             'name' => 'Reinaldo',
-            'email' => 'reinaldo@reinaldo.com',
+            'email' => 'reinaldo2@reinaldo.com',
             'password' => '12345'
-        ])->assertRedirect('usuarios');
+        ])->assertRedirect('/usuarios');
 
-        $this->assertDatabaseHas('users',[
+        $this->assertCredentials([
             'name' => 'Reinaldo',
-            'email' => 'reinaldo@reinaldo.com',
-            // 'password' => '12345'
+            'email' => 'reinaldo2@reinaldo.com',
+            'password' => '12345'
         ]);
     }
 
