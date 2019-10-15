@@ -50,7 +50,22 @@ class UserController extends Controller
 
     public function store(){
         
-        $data = request()->all();
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => 'required'
+        ],[
+            'name.required' => 'El campo de nombre es obligatorio',
+            'email.required' => 'El campo de correo es obligatorio',
+            'password.required' => 'La contraseña es obligatoria'
+
+        ]);
+
+        // if (empty($data['name'])){
+        //     return redirect()->route('create')->withErrors([
+        //         'name' => 'El campo es obligatorio'
+        //     ]);
+        // };
 
         factory(User::class)->create([
             'name' => $data['name'],
@@ -63,5 +78,24 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('user');
+    }
+
+    public function edit(User $user){
+        return view('users.edit', ['user' => $user]);
+    }
+
+    public function update (User $user){
+
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => ['required','email'],
+            'password' => ''
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+
+        $user->update($data);
+
+        return redirect()->route('show', $user);
     }
 }
