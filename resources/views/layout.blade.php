@@ -41,7 +41,7 @@
     <header>
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Curso Laravel</a>
+            <a class="navbar-brand" href="{{route('user')}}">Curso Laravel</a>
             
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
