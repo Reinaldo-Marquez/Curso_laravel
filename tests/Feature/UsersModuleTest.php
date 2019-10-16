@@ -217,8 +217,9 @@ class UsersModuleTest extends TestCase
 
     public function test_email_most_be_unique_to_upload (){
 
-        self::markTestIncomplete();
-        return;
+        factory(User::class)->create([
+            'email' => 'existing-email@email.com'
+        ]);
 
         factory(User::class)->create([
             'email' => 'reinaldo2@reinaldo.com',
@@ -226,11 +227,11 @@ class UsersModuleTest extends TestCase
 
         $this->from('/usuarios/nuevo')->post('/usuarios/',[
             'name' => 'Reinaldo',
-            'email' => 'reinaldo2@reinaldo.com',
+            'email' => 'existing-email@email.com',
             'password' => '12345'
         ])->assertRedirect('/usuarios/nuevo')->assertSessionHasErrors(['email']);
 
-        $this->assertEquals(1, User::count());
+        
     }
 
     public function test_the_password_is_optional_to_upload (){
@@ -251,6 +252,25 @@ class UsersModuleTest extends TestCase
             'name' => 'Reinaldo',
             'email' => 'reinaldo2@reinaldo.com',
             'password' =>  $oldPassword
+        ]); 
+    }
+
+    public function test_the_email_stay_the_same_to_upload (){
+
+
+        $user = factory(User::class)->create([
+            'email' => 'reinaldo2@reinaldo.com'
+            ]);
+
+        $this->from("/usuarios/{$user->id}/editar")->put("/usuarios/{$user->id}",[
+            'name' => 'Reinaldo',
+            'email' => 'reinaldo2@reinaldo.com',
+            'password' => '12345'
+        ])->assertRedirect("/usuarios/{$user->id}");
+
+        $this->assertDatabaseHas('users',[
+            'name' => 'Reinaldo',
+            'email' => 'reinaldo2@reinaldo.com'
         ]); 
     }
 }

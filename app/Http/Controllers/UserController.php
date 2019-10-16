@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     public function index(){
@@ -88,7 +88,9 @@ class UserController extends Controller
 
         $data = request()->validate([
             'name' => 'required',
-            'email' => ['required','email'],
+            'email' => ['required','email', Rule::unique('users')->ignore($user->id)],
+            //otra forma de hacerlo es la de abajo:
+            // 'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => ''
         ]);
 
