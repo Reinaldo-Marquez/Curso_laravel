@@ -1,7 +1,7 @@
 @extends('layout');
 
 @section('title')
-Crear Usuario
+Editar Usuario
 @endsection
 
 @section('content')

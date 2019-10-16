@@ -23,6 +23,8 @@ Route::get('/usuarios/{user}', 'UserController@show')->where('user', '\d+')->nam
 
 Route::put('/usuarios/{user}', 'UserController@update')->name('update');
 
+Route::delete('/usuarios/{user}', 'UserController@destroy')->name('destroy');
+
 Route::get('/usuarios/nuevo', 'UserController@create')->name('create');
 
 Route::post('/usuarios', 'UserController@store')->name('store');

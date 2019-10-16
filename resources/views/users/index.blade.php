@@ -12,7 +12,17 @@
 
     <ul>
         @forelse ($users as $user)
-    <li>{{$user->name}} - {{$user->email}} <a href="{{ route('show', ['user' => $user->id]) }}">Detalles</a> | <a href="{{ route('edit', ['user' => $user->id]) }}">editar</a></li> 
+    <li>{{$user->name}} - {{$user->email}} 
+        <a href="{{ route('show', $user) }}">Detalles</a> | 
+        <a href="{{ route('edit', $user) }}">editar</a> | 
+    <form action="{{ route('destroy', $user) }}" method="post" >
+        {{method_field('delete')}}
+        {{ csrf_field() }}
+
+        <button> Eliminar </button>
+
+    </form>
+    </li> 
         @empty
             <p>No hay usuarios registrados</p>            
         @endforelse
