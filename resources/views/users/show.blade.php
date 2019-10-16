@@ -7,8 +7,8 @@
 @section('content')
 
 <h1 class="mt-5">Usuario # {{$user->id}}</h1>  
-<p>Nombre del usuario: {{$user->name}}</p>
-<p>Email del usuario: {{$user->email}}</p>
+<p><strong>Nombre del usuario:</strong> {{$user->name}}</p>
+<p><strong>Email del usuario:</strong> {{$user->email}}</p>
 <a href="{{route('user')}}">Volver al inicio</a>
 
 @endsection

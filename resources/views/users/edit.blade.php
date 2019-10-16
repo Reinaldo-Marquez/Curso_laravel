@@ -22,22 +22,22 @@ Editar Usuario
     {{method_field('PUT')}}
     {{ csrf_field() }}
 
-    <label for="name">Ingrese su nombre</label>
-    <input type="text" name="name" id="name" value="{{old('name', $user->name)}}" placeholder="Reinaldo Marquez">
+    <div class="form-group">
+        <label for="name">Ingrese su nombre</label>
+        <input type="text" class="form-control" name="name" id="name" value="{{old('name', $user->name)}}"
+            placeholder="Reinaldo Marquez">
+    </div>
+    <div class="form-group">
+        <label for="name">Ingrese su correo</label>
+        <input type="email" class="form-control" name="email" id="email" value="{{old('email', $user->email)}}"
+            placeholder="reinaldo@reinaldo.com">
+    </div>
+    <div class="form-group">
+        <label for="name">Ingrese su contraseña</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Mayor a 8 caracteres">
+    </div>
 
-    <br>
-
-    <label for="name">Ingrese su correo</label>
-    <input type="email" name="email" id="email" value="{{old('email', $user->email)}}" placeholder="reinaldo@reinaldo.com">
-
-    <br>
-
-    <label for="name">Ingrese su contraseña</label>
-    <input type="password" name="password" id="password" placeholder="Mayor a 8 caracteres">
-
-    <br>
-
-    <button type="submit">Actualizar usuario </button>
+    <button type="submit" class="btn btn-primary">Actualizar usuario</button>
 </form>
 
 <p><a href="{{route('user')}}">Volver al inicio</a></p>

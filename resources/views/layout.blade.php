@@ -8,7 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>@yield('title')</title>
-
+    <script src="https://kit.fontawesome.com/acdf41045a.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
 
     <!-- Bootstrap core CSS -->
