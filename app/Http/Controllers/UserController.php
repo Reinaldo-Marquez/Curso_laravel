@@ -92,7 +92,14 @@ class UserController extends Controller
             'password' => ''
         ]);
 
-        $data['password'] = bcrypt($data['password']);
+        if ($data['password'] != null) {
+
+            $data['password'] = bcrypt($data['password']);
+            
+        } else {
+            
+            unset($data['password']);
+        }
 
         $user->update($data);
 
